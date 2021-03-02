@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>To Do List</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+<style>
+    body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+}
+
+.box {
+  width: 300px;
+  height: 450px;
+  background: #f7f7f9;
+}
+
+.header {
+  height: 10%;
+  background: #8a7e7e;
+  border-bottom: 1px solid #9e939380;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  text-align: center;
+  padding: 15px 10px;
+  font-size: 14px;
+}
+.header label {
+  color: white;
+}
+.header select {
+  width: 70%;
+}
+
+.body {
+  padding: 10px;
+}
+.body button {
+  float: right;
+  font-size: 12px;
+}
+.body .wrapper, .body .wrapper-2 {
+  clear: right;
+}
+.body .wrapper div:first-child, .body .wrapper-2 div:first-child {
+  margin-top: 50px;
+}
+.body .wrapper p, .body .wrapper-2 p {
+  margin-top: 50%;
+}
+.body .wrapper-2 {
+  display: none;
+}
+</style>  
+</head>
+  <body>
+      
+    <h1 class="mb-5 h2 bg-white">Simple To Do List</h1>
+    <div class="box">
+       
+        <div class="header">
+          <div class="row"><div class="col-sm-6"> <label for="validationTooltip01">Task Status</label></div><div class="col-sm-6">
+          <select class="list">
+        <option selected>Select</option>
+        <option value="1"selected>Active</option>
+        <option value="2">Completed</option>
+        
+      </select></div>
+            </div>
+          
+        </div>
+        <div class="body">
+          <button type="button" class="btn btn-primary add" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-folder-plus mr-2"></i> Add</button>
+          <div class="wrapper">
+      <!--      <p class="text-center">No Task currently</p> -->
+          </div>
+          <div class="wrapper-2 "></div>
+           </div>
+       </div>
+      
+      
+      
+      
+      
+      
+      
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Add Task Name</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+             <form>
+            <div class="modal-body">
+            
+               <div class="form-group row">
+          <label for="inputPassword" class="col-sm-2 col-form-label">Task</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control get" id="inputPassword" >
+          </div>
+        </div>
+               
+            </div>
+            <div class="modal-footer">
+             
+              <button type="button" class="btn btn-primary form"  data-dismiss="modal">Submit</button>
+             
+            </div>
+               </form>
+          </div>
+        </div>
+      </div>
+      
+      
+      
+      
+      
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script>
+
+$( document ).ready(function() { 
+function check(){
+  function isEmpty( el ){
+      return !$.trim(el.html())
+  }
+  if (isEmpty($('.wrapper'))) {
+     $('.wrapper').html();
+    $('p').css("display","block");
+  }else{
+     $('p').css("display","none")
+  }
+}
+    check();
+  
+  var aa=0;
+   $('#myModal').on('shown.bs.modal', function () {
+  $('#myInput').trigger('focus')
+})
+  $( ".form" ).on("click",function() {  
+    check();
+     aa=$(".get" ).val();
+    console.log(aa);
+  $( ".wrapper" ).append("<div class='checkbox'><input type='checkbox' class='mr-2 check-b'><label>"+aa+"</label></div>");
+    event.preventDefault();
+     $("#myModal").modal('hide');
+     $(".get" ).val("");
+     $(".get" ).text("");
+ 
+  });
+
+  $(".add").on("click", function(){
+    $(".get" ).val();
+    aa=0;
+    })
+  
+  $(".wrapper").delegate(".mr-2", "click", function(){
+    check();
+        if($(this).prop("checked") == true){
+          $(this).siblings('label').css( "text-decoration", "line-through" );
+            var temp=$(this).parent().html();
+          console.log(temp)
+            
+          $(this).delay(800).queue(function (next) { 
+          $(this).parent().css('display', 'none'); 
+           next(); 
+           });
+          $( ".wrapper-2" ).append("<div class='checkbox'>"+temp+"</div>")
+           check();
+            }
+            }); 
+  
+  $("select").change(function(){
+    check();
+        var selectedlist = $(this).children("option:selected").val();
+   
+    if(selectedlist==1){
+       $(".wrapper").css('display', 'block'); 
+      $(".wrapper-2").css('display', 'none'); 
+      $(".add").css('display', 'block');
+      
+    }
+         if(selectedlist==2){
+           $(".wrapper").css('display', 'none'); 
+            $(".wrapper-2").css('display', 'block'); 
+            $(".add").css('display', 'none'); 
+           
+         }
+    });
+ 
+});
+
+</script>  
+</body>
+</html>
