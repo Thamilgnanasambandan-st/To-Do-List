@@ -109,14 +109,17 @@
                <div class="form-group row">
           <label for="inputPassword" class="col-sm-2 col-form-label">Task</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control get" id="inputPassword" >
+            <input type="text" class="form-control get" id="inputPassword" placeholder="Enter Your Tasks">
+            <div class="invalid-feedback d-none">
+                Please provide a task name.
+              </div>
           </div>
         </div>
                
             </div>
             <div class="modal-footer">
              
-              <button type="button" class="btn btn-primary form"  data-dismiss="modal">Submit</button>
+              <button type="button" class="btn btn-primary form" >Submit</button>
              
             </div>
                </form>
@@ -135,76 +138,68 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script>
 
-$( document ).ready(function() { 
-function check(){
-  function isEmpty( el ){
-      return !$.trim(el.html())
-  }
-  if (isEmpty($('.wrapper'))) {
-     $('.wrapper').html();
-    $('p').css("display","block");
-  }else{
-     $('p').css("display","none")
-  }
-}
-    check();
-  
-  var aa=0;
-   $('#myModal').on('shown.bs.modal', function () {
-  $('#myInput').trigger('focus')
-})
-  $( ".form" ).on("click",function() {  
-    check();
-     aa=$(".get" ).val();
-    console.log(aa);
-  $( ".wrapper" ).append("<div class='checkbox'><input type='checkbox' class='mr-2 check-b'><label>"+aa+"</label></div>");
-    event.preventDefault();
-     $("#myModal").modal('hide');
-     $(".get" ).val("");
-     $(".get" ).text("");
- 
-  });
+    $(document).ready(function () {
 
-  $(".add").on("click", function(){
-    $(".get" ).val();
-    aa=0;
-    })
-  
-  $(".wrapper").delegate(".mr-2", "click", function(){
-    check();
-        if($(this).prop("checked") == true){
-          $(this).siblings('label').css( "text-decoration", "line-through" );
-            var temp=$(this).parent().html();
-          console.log(temp)
-            
-          $(this).delay(800).queue(function (next) { 
-          $(this).parent().css('display', 'none'); 
-           next(); 
-           });
-          $( ".wrapper-2" ).append("<div class='checkbox'>"+temp+"</div>")
-           check();
+
+        var aa = 0;
+        $('#myModal').on('shown.bs.modal', function () {
+            $('#myInput').trigger('focus')
+        })
+        $(".form").on("click", function () {
+            var inputsCheck = $("#inputPassword").val()
+            if (inputsCheck !== "") {
+
+
+                aa = $(".get").val();
+                console.log(aa);
+                $(".wrapper").append("<div class='checkbox'><input type='checkbox' class='mr-2 check-b'><label>" + aa + "</label></div>");
+                event.preventDefault();
+                $("#myModal").modal('hide');
+                $(".get").val("");
+                $(".get").text("");
+                $(".form").attr("data-dismiss", "modal")
+            } else {
+                $(".invalid-feedback").removeClass("d-none");
+                $("#inputPassword").addClass("is-invalid");
             }
-            }); 
-  
-  $("select").change(function(){
-    check();
-        var selectedlist = $(this).children("option:selected").val();
-   
-    if(selectedlist==1){
-       $(".wrapper").css('display', 'block'); 
-      $(".wrapper-2").css('display', 'none'); 
-      $(".add").css('display', 'block');
-      
-    }
-         if(selectedlist==2){
-           $(".wrapper").css('display', 'none'); 
-            $(".wrapper-2").css('display', 'block'); 
-            $(".add").css('display', 'none'); 
-           
-         }
+
+
+        });
+
+        $(".wrapper").delegate(".mr-2", "click", function () {
+            if ($(this).prop("checked") == true) {
+                $(this).siblings('label').css("text-decoration", "line-through");
+                var temp = $(this).parent().html();
+                console.log(temp)
+
+                $(this).delay(800).queue(function (next) {
+                    $(this).parent().css('display', 'none');
+                    next();
+                });
+                $(".wrapper-2").append("<div class='checkbox'>" + temp + "</div>")
+
+            }
+        });
+
+        $("select").change(function () {
+
+            var selectedlist = $(this).children("option:selected").val();
+
+            if (selectedlist == 1) {
+                $(".wrapper").css('display', 'block');
+                $(".wrapper-2").css('display', 'none');
+                $(".add").css('display', 'block');
+
+            }
+            if (selectedlist == 2) {
+                $(".wrapper").css('display', 'none');
+                $(".wrapper-2").css('display', 'block');
+                $(".add").css('display', 'none');
+
+            }
+        });
+
     });
- 
-});
 
 </script>  
 </body>
