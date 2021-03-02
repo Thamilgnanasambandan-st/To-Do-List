@@ -147,8 +147,8 @@
           
         })
       $(".add").on("click",function () {
-       $(".invalid-feedback").removeClass("is-invalid");
-                $("#inputPassword").addClass("d-none");
+       $(".invalid-feedback").removeClass("d-none");
+                $("#inputPassword").addClass("is-invalid");
       })
         $(".form").on("click", function () {
             var inputsCheck = $("#inputPassword").val()
