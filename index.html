@@ -159,6 +159,7 @@
                 $(".get").text("");
                 $(".form").attr("data-dismiss", "modal")
             } else {
+                $(".form").attr("data-dismiss", "")
                 $(".invalid-feedback").removeClass("d-none");
                 $("#inputPassword").addClass("is-invalid");
             }
@@ -170,7 +171,7 @@
             if ($(this).prop("checked") == true) {
                 $(this).siblings('label').css("text-decoration", "line-through");
                 var temp = $(this).parent().html();
-                console.log(temp)
+               
 
                 $(this).delay(800).queue(function (next) {
                     $(this).parent().css('display', 'none');
