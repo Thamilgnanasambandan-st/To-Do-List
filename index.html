@@ -144,9 +144,12 @@
         var aa = 0;
         $('#myModal').on('shown.bs.modal', function () {
             $('#myInput').trigger('focus')
-           $(".invalid-feedback").removeClass("is-invalid");
-                $("#inputPassword").addClass("d-none");
+          
         })
+      $(".add").on("click",function () {
+       $(".invalid-feedback").removeClass("is-invalid");
+                $("#inputPassword").addClass("d-none");
+      })
         $(".form").on("click", function () {
             var inputsCheck = $("#inputPassword").val()
             if (inputsCheck !== "") {
